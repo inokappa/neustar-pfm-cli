@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+
+# require "thor"
+require "neustar_pfm_cli/loadtest"
+
+NeustarPfmCli::LoadTest.start
