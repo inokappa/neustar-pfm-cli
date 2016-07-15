@@ -1,4 +1,4 @@
-# NeustarPfmCli
+# neustar-pfm-cli
 
 ## About
 
