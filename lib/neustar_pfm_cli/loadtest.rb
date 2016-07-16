@@ -5,8 +5,8 @@ require "json"
 
 module NeustarPfmCli
   class LoadTest < Thor
-    desc "list", "負荷試験の一覧を取得する"
-    method_option :limit, :type => :string, :aliases => '-l', :desc => "取得する件数を指定", :default => "10"
+    desc "ls", "負荷試験の一覧を取得する"
+    method_option :limit, :type => :string, :aliases => '-l', :desc => "取得する件数を指定する", :default => "10"
     def ls
       begin
         res = request.get "/performance/load/1.0/list?limit=#{options[:limit]}&apikey=#{$api_key}&sig=#{$sig}"
@@ -16,7 +16,18 @@ module NeustarPfmCli
       end
     end
 
-    desc "delete", "負荷試験を削除する"
+    desc "get", "負荷試験の情報を取得する"
+    method_option :id, :type => :string, :aliases => '-i', :desc => "loadTestId を指定する"
+    def get
+      begin
+        res = request.get "/performance/load/1.0/id/#{options[:id]}?apikey=#{$api_key}&sig=#{$sig}"
+        puts res.body
+      rescue => e
+        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
+      end
+    end
+
+    desc "del", "負荷試験を削除する"
     method_option :id, :type => :string, :aliases => '-i', :desc => "loadTestId を指定する"
     def del
       begin
@@ -51,6 +62,25 @@ module NeustarPfmCli
     end
 
     private
+
+    #require "digest/md5"
+    #require "faraday"
+    #
+    #def auth 
+    #  api_key    = ENV["NEUSTAR_API_KEY"] 
+    #  shared_key = ENV["NEUSTAR_SHARED_KEY"]
+    #  timestamp  = Time.now.to_i
+    #  sig        = Digest::MD5.hexdigest(api_key + shared_key + timestamp.to_s)
+
+    #  return api_key, sig
+    #end
+    #
+    #def request 
+    #  Faraday::Connection.new(:url => 'https://api.neustar.biz') do |builder|
+    #    builder.use Faraday::Adapter::NetHttp
+    #  end
+    #end
+
 
     def load_loadtest_file(filename)
       params = YAML.load_file(filename) 
