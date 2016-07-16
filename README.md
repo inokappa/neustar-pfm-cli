@@ -1,4 +1,5 @@
 # neustar-pfm-cli
+[![Build Status](https://travis-ci.org/inokappa/neustar-pfm-cli.svg?branch=master)](https://travis-ci.org/inokappa/neustar-pfm-cli)
 
 ## About
 
@@ -50,6 +51,12 @@ export NEUSTAR_LOCAL_VALIDATOR_PATH="/path/to/local-validator-4.34.17/bin/valida
 
 ```sh
 bundle exec bin/npc-loadtest ls | jq '.data.items[]'
+```
+
+- get ... 負荷試験の詳細を取得する
+
+```sh
+bundle exec bin/npc-loadtest get -i 123456 | jq '.data.items[]'
 ```
 
 - del ... 指定した負荷試験を削除する
