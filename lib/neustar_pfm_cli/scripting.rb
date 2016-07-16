@@ -11,8 +11,8 @@ module NeustarPfmCli
         res = request.get "/performance/script/1.0/ValidScripts/?limit#{options[:limit]}&apikey=#{auth[0]}&sig=#{auth[1]}"
         puts res.body
       rescue => e
-        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
-        exit 1
+        logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}")
+        # exit 1
       end
     end
 
@@ -26,12 +26,12 @@ module NeustarPfmCli
             puts "\e[33m" + stderr.read + "\e[0m"
           end
         else
-          puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] 環境変数 NEUSTAR_LOCAL_VALIDATOR_PATH に Local Validator のパスを指定して下さい..."
-          exit 1
+          logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] 環境変数 NEUSTAR_LOCAL_VALIDATOR_PATH に Local Validator のパスを指定して下さい...")
+          # exit 1
         end
       rescue => e
-        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
-        exit 1
+        logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] スクリプトファイルのパスを指定して下さい...")
+        # exit 1
       end
     end
   
@@ -43,11 +43,13 @@ module NeustarPfmCli
     def up
 
       begin
-        tags = { "tags" => options[:tags].split(",") }
-        desc = { "description" => options[:desc] }
-        params = tags.merge(desc)
+        unless options[:tags] == nil || options[:desc] == nil then
+          tags = { "tags" => options[:tags].split(",") }
+          desc = { "description" => options[:desc] }
+          params = tags.merge(desc)
+        end
       rescue => e
-        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
+        logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}")
       end
 
       begin
@@ -61,8 +63,8 @@ module NeustarPfmCli
         end
         puts res.body
       rescue => e
-        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
-        exit 1
+        logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] スクリプトファイルのパスを指定して下さい...")
+        # exit 1
       end
     end
 
