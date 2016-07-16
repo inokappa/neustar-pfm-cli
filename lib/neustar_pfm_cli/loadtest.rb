@@ -1,7 +1,4 @@
 require "neustar_pfm_cli/common"
-require "thor"
-require "yaml"
-require "json"
 
 module NeustarPfmCli
   class LoadTest < Thor
@@ -9,7 +6,7 @@ module NeustarPfmCli
     method_option :limit, :type => :string, :aliases => '-l', :desc => "取得する件数を指定する", :default => "10"
     def ls
       begin
-        res = request.get "/performance/load/1.0/list?limit=#{options[:limit]}&apikey=#{$api_key}&sig=#{$sig}"
+        res = request.get "/performance/load/1.0/list?limit=#{options[:limit]}&apikey=#{auth[0]}&sig=#{auth[1]}"
         puts res.body
       rescue => e
         puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
@@ -20,7 +17,7 @@ module NeustarPfmCli
     method_option :id, :type => :string, :aliases => '-i', :desc => "loadTestId を指定する"
     def get
       begin
-        res = request.get "/performance/load/1.0/id/#{options[:id]}?apikey=#{$api_key}&sig=#{$sig}"
+        res = request.get "/performance/load/1.0/id/#{options[:id]}?apikey=#{auth[0]}&sig=#{auth[1]}"
         puts res.body
       rescue => e
         puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
@@ -31,7 +28,7 @@ module NeustarPfmCli
     method_option :id, :type => :string, :aliases => '-i', :desc => "loadTestId を指定する"
     def del
       begin
-        res = request.delete "/performance/load/1.0/#{options[:id]}/delete?apikey=#{$api_key}&sig=#{$sig}"
+        res = request.delete "/performance/load/1.0/#{options[:id]}/delete?apikey=#{auth[0]}&sig=#{auth[1]}"
         puts res.body
       rescue => e
         puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
@@ -49,7 +46,7 @@ module NeustarPfmCli
 
       begin
         res = request.post do |req|
-          req.url "/performance/load/1.0/schedule?apikey=#{$api_key}&sig=#{$sig}"
+          req.url "/performance/load/1.0/schedule?apikey=#{auth[0]}&sig=#{auth[1]}"
           req.headers["Content-Type"] = "application/json"
           puts req.body = params.to_json
         end
