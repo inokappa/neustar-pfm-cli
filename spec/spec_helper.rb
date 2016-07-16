@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'neustar_pfm_cli/common'
 require 'neustar_pfm_cli/loadtest'
 require 'neustar_pfm_cli/scripting'
 
