@@ -9,7 +9,8 @@ module NeustarPfmCli
         res = request.get "/performance/load/1.0/list?limit=#{options[:limit]}&apikey=#{auth[0]}&sig=#{auth[1]}"
         puts res.body
       rescue => e
-        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
+        logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}")
+        # exit 1
       end
     end
 
@@ -20,7 +21,8 @@ module NeustarPfmCli
         res = request.get "/performance/load/1.0/id/#{options[:id]}?apikey=#{auth[0]}&sig=#{auth[1]}"
         puts res.body
       rescue => e
-        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
+        logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}")
+        # exit 1
       end
     end
 
@@ -31,7 +33,8 @@ module NeustarPfmCli
         res = request.delete "/performance/load/1.0/#{options[:id]}/delete?apikey=#{auth[0]}&sig=#{auth[1]}"
         puts res.body
       rescue => e
-        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
+        logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}")
+        # exit 1
       end
     end
 
@@ -41,7 +44,8 @@ module NeustarPfmCli
       begin
         params = load_loadtest_file(options[:file])
       rescue => e
-        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
+        logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] 負荷試験定義ファイルのパスを指定して下さい...")
+        # exit 1
       end
 
       begin
@@ -52,8 +56,8 @@ module NeustarPfmCli
         end
         puts res.body
       rescue => e
-        puts "[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}"
-        exit 1
+        logger.error("[" + "\e[31m" + "ERROR" + "\e[0m" + "] #{e}")
+        # exit 1
       end
 
     end
