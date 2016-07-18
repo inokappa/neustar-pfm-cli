@@ -1,5 +1,4 @@
-# neustar-pfm-cli
-[![Build Status](https://travis-ci.org/inokappa/neustar-pfm-cli.svg?branch=master)](https://travis-ci.org/inokappa/neustar-pfm-cli)
+# neustar-pfm-cli [![Build Status](https://travis-ci.org/inokappa/neustar-pfm-cli.svg?branch=master)](https://travis-ci.org/inokappa/neustar-pfm-cli)
 
 ## About
 
@@ -78,11 +77,11 @@ name: "myloadtest"
 region: "AP_NORTHEAST"
 scripts:
   - percentage: 100
-      scriptId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      parts:
+    scriptId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    parts:
   - duration: 5
-      maxUsers: 10
-      type: "RAMP"
+    maxUsers: 10
+    type: "RAMP"
 ```
 
 ### scripting
