@@ -78,11 +78,11 @@ name: "myloadtest"
 region: "AP_NORTHEAST"
 scripts:
   - percentage: 100
-      scriptId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      parts:
+    scriptId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    parts:
   - duration: 5
-      maxUsers: 10
-      type: "RAMP"
+    maxUsers: 10
+    type: "RAMP"
 ```
 
 ### scripting
