@@ -1,5 +1,4 @@
-# neustar-pfm-cli
-[![Build Status](https://travis-ci.org/inokappa/neustar-pfm-cli.svg?branch=master)](https://travis-ci.org/inokappa/neustar-pfm-cli)
+# neustar-pfm-cli [![Build Status](https://travis-ci.org/inokappa/neustar-pfm-cli.svg?branch=master)](https://travis-ci.org/inokappa/neustar-pfm-cli)
 
 ## About
 
