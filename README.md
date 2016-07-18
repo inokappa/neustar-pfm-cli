@@ -8,6 +8,7 @@
 
 ## Reference
 
+- https://apidocs.wpm.neustar.biz/
 - https://apidocs.wpm.neustar.biz/loadtesting
 - https://apidocs.wpm.neustar.biz/script
 
@@ -78,10 +79,13 @@ region: "AP_NORTHEAST"
 scripts:
   - percentage: 100
     scriptId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    parts:
+parts:
   - duration: 5
     maxUsers: 10
     type: "RAMP"
+  - duration: 5
+    maxUsers: 10
+    type: "CONSTANT"
 ```
 
 ### scripting
